@@ -24,7 +24,7 @@ public class MainPresenterTest extends MVPXAndroidTestCase {
 		MainPresenter presenter = new MainPresenter();
 		presenter.useView(view);
 
-		presenter.doLogin();
+		presenter.onLoginClick();
 
 		verify(view).getPassword();
 		verify(view).getUsername();

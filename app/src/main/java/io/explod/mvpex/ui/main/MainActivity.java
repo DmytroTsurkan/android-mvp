@@ -45,7 +45,7 @@ public class MainActivity extends BaseActivity implements MainView {
 
 	@OnClick(R.id.button_submit)
 	void onSubmitClick() {
-		presenter.doLogin();
+		presenter.onLoginClick();
 	}
 
 	@NonNull

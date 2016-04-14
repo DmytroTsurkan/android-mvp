@@ -1,7 +1,6 @@
 package io.explod.mvpex.ui.main;
 
 import android.support.annotation.NonNull;
-import android.support.annotation.VisibleForTesting;
 
 import javax.inject.Inject;
 
@@ -23,7 +22,7 @@ public class MainPresenter extends RxPresenter<MainView> {
 		getApp().getObjectGraph().inject(this);
 	}
 
-	public void doLogin() {
+	public void onLoginClick() {
 		MainView view = getView();
 		if (view == null) return;
 
@@ -43,8 +42,7 @@ public class MainPresenter extends RxPresenter<MainView> {
 			));
 	}
 
-	@VisibleForTesting
-	void onLogin(@NonNull User user) {
+	private void onLogin(@NonNull User user) {
 		MainView view = getActiveView();
 		if (view == null) return;
 
@@ -52,8 +50,7 @@ public class MainPresenter extends RxPresenter<MainView> {
 		view.showLoginOkSnackbar();
 	}
 
-	@VisibleForTesting
-	void onLoginError(@NonNull Throwable t) {
+	private void onLoginError(@NonNull Throwable t) {
 		MainView view = getActiveView();
 		if (view == null) return;
 
