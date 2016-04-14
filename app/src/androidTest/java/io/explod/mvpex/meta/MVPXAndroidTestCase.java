@@ -4,7 +4,7 @@ import android.test.AndroidTestCase;
 
 import io.explod.mvpex.module.modules.MockModule;
 
-public class MVPAndroidTestCase extends AndroidTestCase {
+public class MVPXAndroidTestCase extends AndroidTestCase {
 
 	@Override
 	protected void setUp() throws Exception {

@@ -8,14 +8,13 @@ import javax.inject.Inject;
 import io.explod.mvpex.model.User;
 import io.explod.mvpex.model.request.LoginRequest;
 import io.explod.mvpex.network.service.DevelopingService;
-import io.explod.mvpex.util.presenter.Presenter;
-import retrofit2.Response;
-import retrofit2.adapter.rxjava.Result;
+import io.explod.mvpex.util.presenter.RxPresenter;
 import rx.android.schedulers.AndroidSchedulers;
 
 import static io.explod.mvpex.App.getApp;
+import static io.explod.mvpex.util.network.NetworkUtils.isNetworkError;
 
-public class MainPresenter extends Presenter<MainView> {
+public class MainPresenter extends RxPresenter<MainView> {
 
 	@Inject
 	DevelopingService mDevelopingService;
@@ -28,50 +27,42 @@ public class MainPresenter extends Presenter<MainView> {
 		MainView view = getView();
 		if (view == null) return;
 
+		view.closeKeyboard();
+		view.showLoggingInProgressBar();
+
 		CharSequence username = view.getUsername();
 		CharSequence password = view.getPassword();
+
 		LoginRequest request = new LoginRequest(username, password);
 
-		mDevelopingService.login(request)
+		bind(mDevelopingService.login(request)
 			.observeOn(AndroidSchedulers.mainThread())
 			.subscribe(
-				this::onLoginResult,
+				this::onLogin,
 				this::onLoginError
-			);
-
-		view.loggingIn();
+			));
 	}
 
 	@VisibleForTesting
-	void onLoginResult(@NonNull Result<User> result) {
-		if (result.isError()) {
-			onBadLogin();
-		} else {
-			Response<User> response = result.response();
-			User user = response.body();
-			onLoginSuccessful(user);
-		}
-	}
-
-	@VisibleForTesting
-	void onLoginSuccessful(@NonNull User user) {
+	void onLogin(@NonNull User user) {
 		MainView view = getActiveView();
 		if (view == null) return;
-		view.onLoginSuccessful(user);
-	}
 
-	@VisibleForTesting
-	void onBadLogin() {
-		MainView view = getActiveView();
-		if (view == null) return;
-		view.onBadLogin();
+		view.hideLoggingInProgressBar();
+		view.showLoginOkSnackbar();
 	}
 
 	@VisibleForTesting
 	void onLoginError(@NonNull Throwable t) {
 		MainView view = getActiveView();
 		if (view == null) return;
-		view.onLoginError(t);
+
+		view.hideLoggingInProgressBar();
+		if (isNetworkError(t)) {
+			view.showNetworkErrorSnackbar();
+		} else {
+			view.showBadLoginSnackbar();
+		}
 	}
 
 

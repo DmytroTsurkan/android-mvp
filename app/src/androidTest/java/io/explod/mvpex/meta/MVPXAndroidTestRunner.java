@@ -8,9 +8,9 @@ import rx.plugins.RxJavaSchedulersHook;
 import rx.plugins.RxJavaTestPlugins;
 import rx.schedulers.Schedulers;
 
-public class MVPAndroidTestRunner extends AndroidJUnitRunner {
+public class MVPXAndroidTestRunner extends AndroidJUnitRunner {
 
-	public MVPAndroidTestRunner() {
+	public MVPXAndroidTestRunner() {
 		overrideRxJavaSchedulers();
 	}
 

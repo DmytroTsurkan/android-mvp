@@ -29,7 +29,7 @@ android {
         versionCode 1
         versionName "1.0"
 
-        testInstrumentationRunner "io.explod.mvpex.meta.MVPAndroidTestRunner"
+        testInstrumentationRunner "io.explod.mvpex.meta.MVPXAndroidTestRunner"
 
         proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
     }

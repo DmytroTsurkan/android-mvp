@@ -2,10 +2,12 @@ package io.explod.mvpex.ui.main;
 
 import android.support.annotation.NonNull;
 
-import io.explod.mvpex.model.User;
 import io.explod.mvpex.util.presenter.PresenterView;
 
-public interface MainView extends PresenterView {
+/**
+ * PresenterView for MainActivity
+ */
+/* default */ interface MainView extends PresenterView {
 
 	@NonNull
 	CharSequence getUsername();
@@ -13,11 +15,15 @@ public interface MainView extends PresenterView {
 	@NonNull
 	CharSequence getPassword();
 
-	void loggingIn();
+	void closeKeyboard();
 
-	void onBadLogin();
+	void showLoggingInProgressBar();
 
-	void onLoginError(@NonNull Throwable t);
+	void hideLoggingInProgressBar();
 
-	void onLoginSuccessful(@NonNull User user);
+	void showBadLoginSnackbar();
+
+	void showLoginOkSnackbar();
+
+	void showNetworkErrorSnackbar();
 }

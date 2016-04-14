@@ -6,13 +6,11 @@ import android.support.annotation.Nullable;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ProgressBar;
-import android.widget.Toast;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import io.explod.mvpex.R;
-import io.explod.mvpex.model.User;
 import io.explod.mvpex.ui.BaseActivity;
 
 public class MainActivity extends BaseActivity implements MainView {
@@ -35,8 +33,7 @@ public class MainActivity extends BaseActivity implements MainView {
 
 		ButterKnife.bind(this);
 
-		if (presenter == null)
-			presenter = new MainPresenter();
+		presenter = new MainPresenter();
 		presenter.useView(this);
 	}
 
@@ -44,9 +41,6 @@ public class MainActivity extends BaseActivity implements MainView {
 	protected void onDestroy() {
 		super.onDestroy();
 		presenter.useView(null);
-		if (isFinishing()) {
-			presenter = null;
-		}
 	}
 
 	@OnClick(R.id.button_submit)
@@ -67,29 +61,28 @@ public class MainActivity extends BaseActivity implements MainView {
 	}
 
 	@Override
-	public void loggingIn() {
+	public void showLoggingInProgressBar() {
 		mLoginProgress.setVisibility(View.VISIBLE);
+
 	}
 
-	private void loginComplete() {
+	@Override
+	public void hideLoggingInProgressBar() {
 		mLoginProgress.setVisibility(View.GONE);
 	}
 
 	@Override
-	public void onBadLogin() {
-		loginComplete();
-		Toast.makeText(this, R.string.login_invalid, Toast.LENGTH_LONG).show();
+	public void showBadLoginSnackbar() {
+		showSnackbarMessage(getText(R.string.login_invalid));
 	}
 
 	@Override
-	public void onLoginError(@NonNull Throwable t) {
-		loginComplete();
-		Toast.makeText(this, R.string.error_network, Toast.LENGTH_LONG).show();
+	public void showLoginOkSnackbar() {
+		showSnackbarMessage(getText(R.string.login_complete));
 	}
 
 	@Override
-	public void onLoginSuccessful(@NonNull User user) {
-		loginComplete();
-		Toast.makeText(this, R.string.login_complete, Toast.LENGTH_LONG).show();
+	public void showNetworkErrorSnackbar() {
+		showSnackbarMessage(getText(R.string.error_network));
 	}
 }
