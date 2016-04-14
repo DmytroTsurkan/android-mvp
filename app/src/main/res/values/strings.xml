@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">MVPEx</string>
+
+    <string name="literal_username">Username</string>
+    <string name="literal_password">Password</string>
+    <string name="literal_submit">Submit</string>
+
+    <string name="login_complete">Logged in successfully</string>
+    <string name="login_invalid">Bad username/password</string>
+
+    <string name="error_network">Network error</string>
+
+</resources>
