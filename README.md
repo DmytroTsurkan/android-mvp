@@ -2,6 +2,7 @@ Android MVP Practice Project
 ============================
 
 ## Why
+
 I wanted to see how MVP would work when you bring in RecyclerViews and custom views, so I made this project.
 
 There are 3 activities, a simple login activity, a list activity, and a details activity.
@@ -10,7 +11,7 @@ There are 3 activities, a simple login activity, a list activity, and a details 
 
 Each Activity implements a `PresenterView` subinterface, this interface describes methods that change the view, such as `showLoadingIcon()` or `hideLoadingIcon()` or `loadResultsIntoRecyclerView()`
 
-Each Activity also has a `Presenter` subclass from onCreate to onDestroy.
+Each Activity also has a `Presenter` subclass which is relevant from `onCreate` to `onDestroy`.
 
 On the Activities' various events, `onSubmitClick()`, `onStart()`, ...any event, `presenter.event()` is called where presenter will perform logic and maybe update the view with calls like `view.showLoadingIcon()`, `view.hideLoadingIcon()`, `view.loadItemsIntoRecyclerView()`
 
