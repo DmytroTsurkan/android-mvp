@@ -8,14 +8,14 @@ import javax.inject.Inject;
 import io.explod.mvpex.model.Rally;
 import io.explod.mvpex.network.service.DevelopingService;
 import io.explod.mvpex.util.dagger.VisibleForInjection;
-import io.explod.mvpex.util.presenter.Presenter;
+import io.explod.mvpex.util.presenter.RxPresenter;
 import rx.android.schedulers.AndroidSchedulers;
 
 import static io.explod.mvpex.App.getApp;
 import static io.explod.mvpex.util.DateUtils.formatDateTime;
 
 @VisibleForInjection
-public class RallyDetailPresenter extends Presenter<RallyDetailView> {
+public class RallyDetailPresenter extends RxPresenter<RallyDetailView> {
 
 	@Inject
 	DevelopingService mDevelopingService;
@@ -37,13 +37,13 @@ public class RallyDetailPresenter extends Presenter<RallyDetailView> {
 
 		view.showLoadingProgressBar();
 
-		mDevelopingService.getRally(mRallyId)
+		bind(mDevelopingService.getRally(mRallyId)
 			.observeOn(AndroidSchedulers.mainThread())
 			.doOnSuccess(this::monitorRallyParticipants)
 			.subscribe(
 				this::onRally,
 				this::onNetworkError
-			);
+			));
 	}
 
 	private void monitorRallyParticipants(@NonNull Rally rally) {
