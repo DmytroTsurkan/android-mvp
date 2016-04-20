@@ -13,4 +13,8 @@ public interface DevelopingService {
 
 	Single<Items<Rally>> getRallies();
 
+	Single<Rally> getRally(long rallyId);
+
+	Single<Integer> getNumParticipants(long rallyId);
+
 }

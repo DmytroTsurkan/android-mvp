@@ -1,6 +1,7 @@
 package io.explod.mvpex.network.service.mock;
 
 import android.support.annotation.NonNull;
+import android.support.v4.util.LongSparseArray;
 import android.util.Log;
 
 import java.util.concurrent.TimeUnit;
@@ -45,6 +46,43 @@ public class MockService implements AppService, AppAuthorizedService, Developing
 
 	@Override
 	public Single<Items<Rally>> getRallies() {
-		return network("getRallies", Items.mock(Rally.mock(), 100));
+		return network("getRallies", Items.mock(n -> Rally.mock(), 100));
+	}
+
+	@Override
+	public Single<Rally> getRally(long rallyId) {
+		Rally rally = Rally.mock();
+		rally.id = rallyId;
+		return network("getRally", rally);
+	}
+
+	@Override
+	public Single<Integer> getNumParticipants(long rallyId) {
+		Integer numParticipants = Participants.getNumParticipants(rallyId);
+		return network("getNumParticipants", numParticipants);
+	}
+
+	static class Participants {
+
+		@NonNull
+		static final LongSparseArray<Integer> sRallyParticipants = new LongSparseArray<>(10);
+
+		static Integer getNumParticipants(long rallyId) {
+			Integer numParticipants;
+			synchronized (sRallyParticipants) {
+				numParticipants = sRallyParticipants.get(rallyId);
+				if (numParticipants == null) {
+					numParticipants = (int) (Math.random() * 100);
+					sRallyParticipants.put(rallyId, numParticipants);
+				}
+				if (Math.random() > 0.75) {
+					numParticipants += (int) (Math.random() * 10);
+				}
+
+			}
+			return numParticipants;
+		}
+
+
 	}
 }

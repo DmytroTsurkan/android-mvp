@@ -7,6 +7,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import butterknife.Bind;
+import butterknife.ButterKnife;
 import io.explod.mvpex.R;
 
 public class RallyItem extends LinearLayout implements RallyItemView {
@@ -28,6 +29,7 @@ public class RallyItem extends LinearLayout implements RallyItemView {
 	private void init(@NonNull Context context) {
 		LayoutInflater.from(context).inflate(R.layout.item_rally, this);
 		setOrientation(VERTICAL);
+		ButterKnife.bind(this);
 	}
 
 	@Override
