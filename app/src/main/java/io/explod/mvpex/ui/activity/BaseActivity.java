@@ -1,4 +1,4 @@
-package io.explod.mvpex.ui;
+package io.explod.mvpex.ui.activity;
 
 import android.content.Context;
 import android.os.Build;

@@ -8,4 +8,18 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="Item">
+        <item name="android:paddingLeft">?attr/listPreferredItemPaddingLeft</item>
+        <item name="android:paddingRight">?attr/listPreferredItemPaddingRight</item>
+        <item name="android:paddingTop">?attr/listPreferredItemPaddingLeft</item>
+        <item name="android:paddingBottom">?attr/listPreferredItemPaddingLeft</item>
+    </style>
+
+    <style name="Item.Title" parent="Base.TextAppearance.AppCompat.Title">
+    </style>
+
+    <style name="Item.Subtitle" parent="Base.TextAppearance.Widget.AppCompat.Toolbar.Subtitle">
+        <item name="android:layout_marginRight">?attr/listPreferredItemPaddingRight</item>
+    </style>
+
 </resources>

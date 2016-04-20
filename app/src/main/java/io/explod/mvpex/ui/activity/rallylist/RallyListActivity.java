@@ -1,4 +1,4 @@
-package io.explod.mvpex.ui.rallylist;
+package io.explod.mvpex.ui.activity.rallylist;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -13,7 +13,8 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import io.explod.mvpex.R;
 import io.explod.mvpex.model.Rally;
-import io.explod.mvpex.ui.BaseActivity;
+import io.explod.mvpex.ui.activity.BaseActivity;
+import io.explod.mvpex.ui.view.rally.RallyListAdapter;
 
 import static io.explod.mvpex.util.TagUtils.makeTag;
 
@@ -29,6 +30,8 @@ public class RallyListActivity extends BaseActivity implements RallyListView {
 	@Bind(R.id.progress_loading_rallies)
 	ProgressBar mLoadingRalliesProgress;
 
+	RallyListAdapter mRallyListAdapter;
+
 	@Override
 	protected void onCreate(@Nullable Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -37,7 +40,7 @@ public class RallyListActivity extends BaseActivity implements RallyListView {
 		ButterKnife.bind(this);
 
 		presenter = new RallyListPresenter();
-		presenter.useView(this);
+		presenter.attach(this);
 	}
 
 	@Override
@@ -49,7 +52,7 @@ public class RallyListActivity extends BaseActivity implements RallyListView {
 	@Override
 	protected void onDestroy() {
 		super.onDestroy();
-		presenter.useView(null);
+		presenter.attach(null);
 	}
 
 	@Override
@@ -64,7 +67,11 @@ public class RallyListActivity extends BaseActivity implements RallyListView {
 
 	@Override
 	public void loadRalliesIntoRecyclerView(@NonNull List<Rally> rallies) {
-		// todo: create adapter using MVP pattern
+		if (mRallyListAdapter == null) {
+			mRallyListAdapter = new RallyListAdapter();
+			mRalliesRecycler.setAdapter(mRallyListAdapter);
+		}
+		mRallyListAdapter.setRallies(rallies);
 	}
 
 	@Override

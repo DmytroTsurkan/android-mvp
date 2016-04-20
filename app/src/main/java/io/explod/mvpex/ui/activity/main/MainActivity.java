@@ -1,4 +1,4 @@
-package io.explod.mvpex.ui.main;
+package io.explod.mvpex.ui.activity.main;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -11,7 +11,7 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import io.explod.mvpex.R;
-import io.explod.mvpex.ui.BaseActivity;
+import io.explod.mvpex.ui.activity.BaseActivity;
 
 public class MainActivity extends BaseActivity implements MainView {
 
@@ -34,13 +34,13 @@ public class MainActivity extends BaseActivity implements MainView {
 		ButterKnife.bind(this);
 
 		presenter = new MainPresenter();
-		presenter.useView(this);
+		presenter.attach(this);
 	}
 
 	@Override
 	protected void onDestroy() {
 		super.onDestroy();
-		presenter.useView(null);
+		presenter.attach(null);
 	}
 
 	@OnClick(R.id.button_submit)

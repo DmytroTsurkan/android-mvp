@@ -14,9 +14,9 @@ public abstract class RxPresenter<T extends PresenterView> extends Presenter<T> 
 	SubscriptionList mSubscriptionList;
 
 	@Override
-	public void useView(@Nullable T view) {
+	public void attach(@Nullable T view) {
 		unsubscribe();
-		super.useView(view);
+		super.attach(view);
 	}
 
 	protected synchronized void bind(Subscription subscription) {

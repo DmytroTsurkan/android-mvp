@@ -1,4 +1,4 @@
-package io.explod.mvpex.ui.rallylist;
+package io.explod.mvpex.ui.activity.rallylist;
 
 import android.support.annotation.NonNull;
 import android.support.annotation.VisibleForTesting;
@@ -62,4 +62,5 @@ public class RallyListPresenter extends RxPresenter<RallyListView> {
 		view.hideLoadingRalliesProgressBar();
 		view.showRalliesNetworkError();
 	}
+
 }

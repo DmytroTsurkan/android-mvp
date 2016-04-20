@@ -1,4 +1,4 @@
-package io.explod.mvpex.ui.main;
+package io.explod.mvpex.ui.activity.main;
 
 import android.support.annotation.NonNull;
 

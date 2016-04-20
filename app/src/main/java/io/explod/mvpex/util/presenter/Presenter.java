@@ -36,7 +36,7 @@ public abstract class Presenter<T extends PresenterView> {
 	 * Assign a view to receive callbacks.
 	 * Assign null when this presenter should no longer emit callbacks.
 	 */
-	public void useView(@Nullable T view) {
+	public void attach(@Nullable T view) {
 		this.view = view;
 	}
 
