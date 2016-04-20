@@ -23,7 +23,7 @@ public class MainPresenter extends RxPresenter<MainView> {
 	}
 
 	public void onLoginClick() {
-		MainView view = getView();
+		MainView view = getActiveView();
 		if (view == null) return;
 
 		view.closeKeyboard();
@@ -47,7 +47,7 @@ public class MainPresenter extends RxPresenter<MainView> {
 		if (view == null) return;
 
 		view.hideLoggingInProgressBar();
-		view.showLoginOkSnackbar();
+		view.launchRallyListActivity();
 	}
 
 	private void onLoginError(@NonNull Throwable t) {

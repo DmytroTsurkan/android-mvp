@@ -6,8 +6,6 @@ buildscript {
         classpath 'com.neenbedankt.gradle.plugins:android-apt:1.8'
         classpath 'com.github.ben-manes:gradle-versions-plugin:0.12.0'
         classpath 'me.tatarka:gradle-retrolambda:3.3.0-beta4'
-        classpath 'com.dicedmelon.gradle:jacoco-android:0.1.1'
-        classpath 'org.jacoco:org.jacoco.core:0.7.6.201602180812'
     }
 }
 
@@ -15,7 +13,6 @@ apply plugin: 'com.android.application'
 apply plugin: 'me.tatarka.retrolambda'
 apply plugin: 'com.neenbedankt.android-apt'
 apply plugin: 'com.github.ben-manes.versions'
-apply plugin: 'jacoco-android'
 
 repositories {
     maven { url "https://clojars.org/repo/" }
@@ -33,16 +30,13 @@ android {
         versionName "1.0"
 
         testInstrumentationRunner "io.explod.mvpex.meta.MVPXAndroidTestRunner"
-
-        proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
     }
     buildTypes {
         debug {
-            minifyEnabled false
-            testCoverageEnabled true
         }
         release {
             minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
     compileOptions {

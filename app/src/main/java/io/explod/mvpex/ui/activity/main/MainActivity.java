@@ -12,10 +12,11 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import io.explod.mvpex.R;
 import io.explod.mvpex.ui.activity.BaseActivity;
+import io.explod.mvpex.ui.activity.rallylist.RallyListActivity;
 
 public class MainActivity extends BaseActivity implements MainView {
 
-	private MainPresenter presenter;
+	private MainPresenter mPresenter;
 
 	@Bind(R.id.progress_login)
 	ProgressBar mLoginProgress;
@@ -33,19 +34,19 @@ public class MainActivity extends BaseActivity implements MainView {
 
 		ButterKnife.bind(this);
 
-		presenter = new MainPresenter();
-		presenter.attach(this);
+		mPresenter = new MainPresenter();
+		mPresenter.attach(this);
 	}
 
 	@Override
 	protected void onDestroy() {
 		super.onDestroy();
-		presenter.attach(null);
+		mPresenter.attach(null);
 	}
 
 	@OnClick(R.id.button_submit)
 	void onSubmitClick() {
-		presenter.onLoginClick();
+		mPresenter.onLoginClick();
 	}
 
 	@NonNull
@@ -63,7 +64,6 @@ public class MainActivity extends BaseActivity implements MainView {
 	@Override
 	public void showLoggingInProgressBar() {
 		mLoginProgress.setVisibility(View.VISIBLE);
-
 	}
 
 	@Override
@@ -77,12 +77,13 @@ public class MainActivity extends BaseActivity implements MainView {
 	}
 
 	@Override
-	public void showLoginOkSnackbar() {
-		showSnackbarMessage(getText(R.string.login_complete));
-	}
-
-	@Override
 	public void showNetworkErrorSnackbar() {
 		showSnackbarMessage(getText(R.string.error_network));
 	}
+
+	@Override
+	public void launchRallyListActivity() {
+		RallyListActivity.launch(this);
+	}
 }
+

@@ -25,13 +25,12 @@ public class RallyListPresenter extends RxPresenter<RallyListView> {
 		getApp().getObjectGraph().inject(this);
 	}
 
-
 	public void onStart() {
-		doLoadRallies();
+		loadRallies();
 	}
 
-	private void doLoadRallies() {
-		RallyListView view = getView();
+	private void loadRallies() {
+		RallyListView view = getActiveView();
 		if (view == null) return;
 
 		view.showLoadingRalliesProgressBar();

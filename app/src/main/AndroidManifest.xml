@@ -16,6 +16,8 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
+        <activity android:name=".ui.activity.rallylist.RallyListActivity"/>
+        <activity android:name=".ui.activity.rallydetail.RallyDetailActivity"/>
     </application>
 
 </manifest>

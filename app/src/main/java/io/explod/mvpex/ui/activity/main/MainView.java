@@ -23,7 +23,7 @@ import io.explod.mvpex.util.presenter.PresenterView;
 
 	void showBadLoginSnackbar();
 
-	void showLoginOkSnackbar();
-
 	void showNetworkErrorSnackbar();
+
+	void launchRallyListActivity();
 }
