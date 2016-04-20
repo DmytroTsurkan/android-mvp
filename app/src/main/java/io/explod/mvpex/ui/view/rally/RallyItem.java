@@ -3,14 +3,14 @@ package io.explod.mvpex.ui.view.rally;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
-import android.widget.LinearLayout;
+import android.widget.FrameLayout;
 import android.widget.TextView;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import io.explod.mvpex.R;
 
-public class RallyItem extends LinearLayout implements RallyItemView {
+public class RallyItem extends FrameLayout implements RallyItemView {
 
 	@Bind(R.id.text_title)
 	TextView mTitleText;
@@ -28,7 +28,6 @@ public class RallyItem extends LinearLayout implements RallyItemView {
 
 	private void init(@NonNull Context context) {
 		LayoutInflater.from(context).inflate(R.layout.item_rally, this);
-		setOrientation(VERTICAL);
 		ButterKnife.bind(this);
 	}
 

@@ -23,8 +23,8 @@ public class MockService implements AppService, AppAuthorizedService, Developing
 
 	private static final String TAG = makeTag(MockService.class);
 
-	private static final long DELAY_MIN = 250L;
-	private static final long DELAY_MAX = 450L;
+	private static final long DELAY_MIN = 1000L;
+	private static final long DELAY_MAX = 2500L;
 
 	static long delay() {
 		return DELAY_MIN + (long) (Math.random() * (DELAY_MAX - DELAY_MIN));
@@ -52,7 +52,7 @@ public class MockService implements AppService, AppAuthorizedService, Developing
 	@Override
 	public Single<Rally> getRally(long rallyId) {
 		Rally rally = Rally.mock();
-		rally.id = rallyId;
+		Rally.mockSetNameForId(rally, rallyId);
 		return network("getRally", rally);
 	}
 

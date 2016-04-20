@@ -1,5 +1,7 @@
 package io.explod.mvpex.model;
 
+import android.support.annotation.NonNull;
+
 import java.util.Date;
 
 public class Rally {
@@ -16,10 +18,14 @@ public class Rally {
 
 	public static Rally mock() {
 		Rally mock = new Rally();
-		mock.id = ++mockId;
-		mock.name = "Mock Rally " + mock.id;
+		mockSetNameForId(mock, ++mockId);
 		mock.location = "Mock Square";
 		mock.time = new Date();
 		return mock;
+	}
+
+	public static void mockSetNameForId(@NonNull Rally rally, long id) {
+		rally.id = id;
+		rally.name = "Mock Rally " + id;
 	}
 }
