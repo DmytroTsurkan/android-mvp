@@ -73,12 +73,11 @@ public class MockService implements AppService, AppAuthorizedService, Developing
 				numParticipants = sRallyParticipants.get(rallyId);
 				if (numParticipants == null) {
 					numParticipants = (int) (Math.random() * 100);
-					sRallyParticipants.put(rallyId, numParticipants);
 				}
 				if (Math.random() > 0.75) {
 					numParticipants += (int) (Math.random() * 10);
 				}
-
+				sRallyParticipants.put(rallyId, numParticipants);
 			}
 			return numParticipants;
 		}
