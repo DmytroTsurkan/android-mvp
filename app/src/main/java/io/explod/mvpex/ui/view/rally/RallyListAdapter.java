@@ -20,7 +20,7 @@ public class RallyListAdapter extends MvpRecyclerAdapter<RallyItemPresenter, Ral
 	}
 
 	@Nullable
-	private Rally getItem(int position) {
+	public Rally getItem(int position) {
 		return mRallies == null ? null : mRallies.get(position);
 	}
 

@@ -29,6 +29,13 @@ public class RallyListPresenter extends RxPresenter<RallyListView> {
 		loadRallies();
 	}
 
+	public void onRallyClick(@NonNull Rally rally) {
+		RallyListView view = getActiveView();
+		if (view == null) return;
+
+		view.launchRallyActivity(rally.id);
+	}
+
 	private void loadRallies() {
 		RallyListView view = getActiveView();
 		if (view == null) return;

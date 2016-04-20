@@ -16,4 +16,6 @@ import io.explod.mvpex.util.presenter.PresenterView;
 	void loadRalliesIntoRecyclerView(@NonNull List<Rally> rallies);
 
 	void showRalliesNetworkError();
+
+	void launchRallyActivity(long id);
 }

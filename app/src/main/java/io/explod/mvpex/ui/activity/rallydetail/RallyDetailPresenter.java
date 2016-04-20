@@ -20,9 +20,9 @@ public class RallyDetailPresenter extends RxPresenter<RallyDetailView> {
 	@Inject
 	DevelopingService mDevelopingService;
 
-	private final int mRallyId;
+	private final long mRallyId;
 
-	public RallyDetailPresenter(int rallyId) {
+	public RallyDetailPresenter(long rallyId) {
 		getApp().getObjectGraph().inject(this);
 		mRallyId = rallyId;
 	}

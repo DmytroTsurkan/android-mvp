@@ -17,7 +17,7 @@ import io.explod.mvpex.ui.activity.BaseActivity;
 
 public class RallyDetailActivity extends BaseActivity implements RallyDetailView {
 
-	public static void launch(@NonNull Context context, int rallyId) {
+	public static void launch(@NonNull Context context, long rallyId) {
 		Intent intent = new Intent(context, RallyDetailActivity.class);
 		intent.putExtra(EXTRA_RALLY_ID, rallyId);
 		context.startActivity(intent);
@@ -50,7 +50,7 @@ public class RallyDetailActivity extends BaseActivity implements RallyDetailView
 		ButterKnife.bind(this);
 
 		Bundle extras = getIntent().getExtras();
-		int rallyId = extras.getInt(EXTRA_RALLY_ID);
+		long rallyId = extras.getLong(EXTRA_RALLY_ID);
 
 		mPresenter = new RallyDetailPresenter(rallyId);
 		mPresenter.attach(this);

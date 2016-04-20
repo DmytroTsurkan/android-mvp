@@ -17,7 +17,9 @@ import butterknife.ButterKnife;
 import io.explod.mvpex.R;
 import io.explod.mvpex.model.Rally;
 import io.explod.mvpex.ui.activity.BaseActivity;
+import io.explod.mvpex.ui.activity.rallydetail.RallyDetailActivity;
 import io.explod.mvpex.ui.view.rally.RallyListAdapter;
+import io.explod.mvpex.util.recycler.ItemClickSupport;
 
 public class RallyListActivity extends BaseActivity implements RallyListView {
 
@@ -44,6 +46,13 @@ public class RallyListActivity extends BaseActivity implements RallyListView {
 		ButterKnife.bind(this);
 
 		mRalliesRecycler.setLayoutManager(new LinearLayoutManager(this));
+
+		ItemClickSupport.addTo(mRalliesRecycler).setOnItemClickListener((recyclerView, position, v) -> {
+			Rally rally = mRallyListAdapter.getItem(position);
+			if (rally != null) {
+				mPresenter.onRallyClick(rally);
+			}
+		});
 
 		mPresenter = new RallyListPresenter();
 		mPresenter.attach(this);
@@ -83,5 +92,10 @@ public class RallyListActivity extends BaseActivity implements RallyListView {
 	@Override
 	public void showRalliesNetworkError() {
 		showSnackbarMessage(getText(R.string.error_network));
+	}
+
+	@Override
+	public void launchRallyActivity(long id) {
+		RallyDetailActivity.launch(this, id);
 	}
 }
